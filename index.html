@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <style>
+            @font-face{
+                font-family: "krabbyPatty";
+                src: url('Krabby Patty.ttf');
+            }
+            body{
+                background-image: url(spongebob.PNG);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-size: 80%;
+                background-position: center;
+                background-color: #ffed88;
+            }
+            .mc{
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: center;
+                align-content: center;
+/*                background-color: yellow;*/
+                height: 100%;
+                width: 100%;
+                flex-wrap: wrap;
+                font-family: "krabbyPatty";
+            }
+            #wm{
+                font-family: "krabbyPatty";
+                text-align: center;
+                font-size: 150px;
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                position: absolute;
+                top: 20%;
+                left:25%;
+                padding: 10px;
+                color: #3a180a;
+            }
+            .bt{
+                font-family: "krabbyPatty";
+                font-size: 45px;
+                position: absolute;
+                top: 50%;
+                left: 43%;
+                padding: 10px;
+                background-color: lightgoldenrodyellow;
+                width: 150px;
+                text-align: center;
+                color: #2b150c;
+            }
+            .hr{
+                position: relative;
+                height: 100%;
+                width:100%;
+            }
+            #li{
+                top:70.5%;
+                border-style: solid;
+                border-width: 10px;
+                border-radius: 1px;
+                border-color: #2b150c;
+                background-color: antiquewhite;
+                transition: 0.3s;
+                transition-timing-function: ease-in-out;
+            }
+            #li:hover{
+                background-color: white;
+            }
+            #su{
+                top:50.5%;
+                border-style: solid;
+                border-width: 10px;
+                border-radius: 100px;
+                border-color: #e5a033;
+                background-color: #ffed88;
+                transition: 0.3s;
+                transition-timing-function: ease-in-out;
+            }
+            #su:hover{
+                background-color: lightgoldenrodyellow;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class='mc'>
+            <div class='hr'>
+                <span id="wm">Welcome!</span>
+                <div id="su" class='bt'>
+                    <span>Sign up</span>
+                </div>
+                <br/>
+                <div id="li" class='bt'>
+                   <a href="LogIn.html"><span>Log in</span></a> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

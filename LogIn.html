@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <style>
+             @font-face{
+                font-family: "krabbyPatty";
+                src: url('Krabby Patty.ttf');
+            }
+            body{
+                background-image: url(wood.PNG);
+                background-repeat:no-repeat;
+                background-size: contain;
+                background-size: 100%, 100%;
+                background-position: center;
+                background-color: #ffed88;
+                font-family: "krabbyPatty";
+                color: #3a180a;
+            }
+            .mc{
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: center;
+                align-content: center;
+/*                background-color: yellow;*/
+                height: 100%;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+             .hr{
+                background-image: url(squidward.PNG);
+                background-repeat:no-repeat;
+                background-size: contain;
+                background-size: 80%, 80%;
+                background-position: center;
+                position: relative;
+                height: 80%;
+                width:50%;
+/*                background-color: aqua;*/
+            }
+            .fm{
+                font-size: 35px;
+                position: absolute;
+                top: 35%;
+                left: 30%;
+                padding: 10px;
+                margin: 10px;
+                background-color: #8bede7;
+                width: 300px;
+                text-align: center;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #69d0ac;
+                padding: 20px;
+                border-radius: 47%;
+                transition: 0.3s;
+                transition-timing-function: ease-in-out;
+            }
+            .fm:hover{
+                background-color:aquamarine;
+            }
+            .bt{
+                font-size: 25px;
+                position: absolute;
+                top: 75%;
+                left: 39%;
+                padding: 10px;
+                background-color: #8bede7;
+                width: 150px;
+                text-align: center;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #69d0ac;
+                padding: 20px;
+                border-radius: 47%;
+                transition: 0.3s;
+                transition-timing-function: ease-in-out;
+            }
+            .bt:hover{
+                background-color:aquamarine;
+            }
+            #fp{
+                font-size: 10px;
+                top: 70%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mc">
+            <div class="hr">
+                <div class="ct">
+                <div class="fm">
+                <span>Username</span>
+                <input type="text" placeholder="SpongebobSquarepants">
+                <br/>
+                <span>Password</span>
+                <br/>
+                <input type="password" placeholder="GaryistheCUTESTsnail<333">
+                </div>
+                <div id="li" class='bt'>
+                <a href="Dashboard.html"><span>Log in</span></a>
+                </div>
+                <div id="fp" class='bt'>
+                <span>Forgot your password?</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

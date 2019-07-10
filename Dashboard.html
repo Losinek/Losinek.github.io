@@ -1,0 +1,867 @@
+<html>
+    <head>
+        <script src="jQuery.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <link type="text/css" rel="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+        <script src="charts.js"> </script>
+		
+        
+        <style>
+			/* The Modal (background) */
+			.modal {
+			  display: none; /* Hidden by default */
+			  position: fixed; /* Stay in place */
+			  z-index: 1; /* Sit on top */
+			  padding-top: 220px; /* Location of the box */
+			  left: 0;
+			  top: 0;
+			  width: 100%; /* Full width */
+			  height: 100%; /* Full height */
+			  overflow: auto; /* Enable scroll if needed */
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+
+			/* Modal Content */
+			.modal-content {
+			  position: relative;
+			  background-color: #fefefe;
+			  margin: auto;
+			  right: 200px;
+			  padding: 0;
+			  border: 1px solid #888;
+			  width: 50%;
+			  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+			  -webkit-animation-name: animatetop;
+			  -webkit-animation-duration: 0.4s;
+			  animation-name: animatetop;
+			  animation-duration: 0.4s
+			}
+
+			/* Add Animation */
+			@-webkit-keyframes animatetop {
+			  from {top:-300px; opacity:0} 
+			  to {top:0; opacity:1}
+			}
+
+			@keyframes animatetop {
+			  from {top:-300px; opacity:0}
+			  to {top:0; opacity:1}
+			}
+
+			/* The Close Button */
+			.close {
+			  color: white;
+			  float: right;
+			  font-size: 28px;
+			  font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+			  color: #000;
+			  text-decoration: none;
+			  cursor: pointer;
+			}
+
+			.modal-header {
+			  padding: 2px 16px;
+			  background-color: #982a2a;
+			  color: white;
+			}
+
+			.modal-body {padding: 2px 16px;}
+
+			.modal-footer {
+			  padding: 2px 16px;
+			  background-color: #a02d2d;
+			  color: white;
+			}
+			/* ----------------------------------------- */
+			@font-face{
+                font-family: "krabbyPatty";
+                src: url('Krabby Patty.ttf');
+            }
+            body{
+                font-family: "krabbyPatty"; 
+            }
+            .mc{
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                justify-content: center;
+                align-content: center;
+                background-color: yellow;
+                height: 100%;
+                width: 100%;
+                flex-wrap: wrap;
+                position: relative;
+            }
+            .hr{
+                background-image: url(wood.PNG);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-size: 100%, 100%;
+                background-position: center;
+                background-color: aqua;
+                width: 68%;
+                height: 10%;
+                position: fixed;
+                top:0px;
+                left:0px;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #8a5626;
+            }
+            .up{
+                background-color: e04329;
+                width: 30%;
+                height: 100%;
+                position: fixed;
+                top:0px;
+                right: 0px;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #c6343a;
+            }
+            .cn{
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 100%;
+            }
+            .bt{
+                position: fixed;
+/*                background-color: lightgoldenrodyellow;*/
+                font-size: 30px;
+                flex-grow: 1;
+                top: 3%;
+                background-image: url(board.PNG);
+                background-repeat: no-repeat;
+                width: 100px;
+                text-align: center;
+                background-size: 140%,140%;
+                background-position:center;
+                background-position:center;
+                font-family: "krabbyPatty"
+            }
+            .bt:hover{
+                
+            }
+            .ur{
+                flex-direction:column;
+            }
+            .chart{
+                position: fixed;
+                width:68%;
+                height:90%;
+                top: 10%;
+                left:0px;
+                background-color: hotpink;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-grow: 1;
+                background-image: url(wood.PNG);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-size: 100%, 100%;
+                background-position: center;
+                background-color: #ffed88;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #8a5626;
+            }
+			canvas{
+                background-color: blanchedalmond;
+                align-content: center;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #8a5626;
+            }
+            .cts#rdr{
+             position: absolute;
+             display: flex;
+             justify-content: center;
+             align-content: center;
+             flex-grow: 1;
+            }
+            #c1{
+                left: 5%;
+                top: 3%;
+            }
+            #c2{
+                left: 15%;
+                top: 3%;
+            }
+            #c3{
+                left:25%;
+                top:3%
+            }
+            #sl{
+                left:35%;
+                top:3%;
+            }
+            #ud{
+                left: 63%;
+                top:3%				
+            }
+			
+			.button1{
+				font-size:22.2px;
+				color: black;
+				}
+			
+			.button1:hover,
+			.button1:focus {
+			  color: black;
+			  text-decoration: none;
+			  cursor: pointer;
+			}
+			
+            #sh{
+                position:fixed;
+                left: 43%;
+                top:3%;
+                width:300px;
+                height:33px;
+            }
+            #shbt{
+                width:50px;
+                left: 59%;
+                top:3%;
+            }
+            #dp{
+                position: fixed;
+                width: 250px;
+                height: 250px;
+                border-radius: 250px;
+                border-style:solid;
+                border-width: 10px;
+                border-color: #c6343a;
+                background-image: url(spongebobIcon.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100%, 100%;
+                left: 78%;
+                top: 7%;
+            }
+            #ui{
+                background-image: url(mrKrabs.PNG);
+                background-size: 100%, 100%;
+                background-repeat:no-repeat;
+                background-position: center;
+/*                background-color: indianred;*/
+                position: fixed;
+                width: 400px;
+                height: 400px;
+                left: 74%;
+                top: 35%;
+                padding-top: 150px;
+                text-align: center;
+                color: #2d2f33;
+                border-style: solid;
+                border-width: 10px;
+                border-color: #c6343a;
+            }
+            #lo{
+/*                background-color: lightgoldenrodyellow;*/
+                width: 100px;
+                height: 30px;
+                position: fixed;
+                font-size: 25px;
+                text-align: center;
+                left:82%;
+                top: 90%;
+              }
+            #chart1{
+                background-color:darkred;
+            } 
+            #chart2{
+                background-color:orangered;
+            }
+            #chart3{
+                background-color:green;
+            }
+            #sales{
+                background-color:darkblue;
+            }
+            #searched{
+                background-color:blueviolet;
+            }
+            #uploads{
+                background-color:violet;
+            }           
+            #load{
+                 background-color: antiquewhite;
+                 height: 20px;
+                 width:255px;
+                 align-content: center;
+                 left:50%;
+            }
+            
+             #sltbl{
+                width: 90%;
+                font-size: 25px;
+                background-color: blanchedalmond;
+                
+            }
+             tr:nth-child(2n){
+                background-color: #c4aa83;
+                
+            }
+            tr:hover{
+                background-color: #802519;
+                color: beige;
+            }
+            .scrollpane
+            {
+                overflow: auto;
+            }
+
+        </style>
+        <script>
+			Chart.defaults.global.defaultFontColor = 'white';
+			//Chart.defaults.global.defaultFontFamily = 'Lato'; --> Just change this to the Krusty Krab font
+			Chart.defaults.global.defaultFontSize = 17;
+            $(document).ready(function(){
+                $("#c1").click(function(){
+                    $("#chart1").show()
+                    $("#chart2").hide()
+                    $("#chart3").hide()
+                    $("#sales").hide()
+                    $("#searched").hide()
+                    $("#uploads").hide()
+                })
+                    $("#c2").click(function(){
+                    $("#chart2").show()
+                    $("#chart1").hide()
+                    $("#chart3").hide()
+                    $("#sales").hide()
+                    $("#searched").hide()
+                    $("#uploads").hide()
+                })
+                    $("#c3").click(function(){
+                    $("#chart3").show()
+                    $("#chart2").hide()
+                    $("#chart1").hide()
+                    $("#sales").hide()
+                    $("#searched").hide()
+                    $("#uploads").hide()
+                })
+                    $("#sl").click(function(){
+                    $("#sales").show()
+                    $("#chart2").hide()
+                    $("#chart3").hide()
+                    $("#chart1").hide()
+                    $("#searched").hide()
+                    $("#uploads").hide()
+                })
+                    $("#shbt").click(function(){
+                    $("#searched").show()
+                    $("#chart2").hide()
+                    $("#chart3").hide()
+                    $("#sales").hide()
+                    $("#chart1").hide()
+                    $("#uploads").hide()
+                })
+                    $("#ud").click(function(){
+                    $("#uploads").show()
+                    $("#chart2").hide()
+                    $("#chart3").hide()
+                    $("#sales").hide()
+                    $("#searched").hide()
+                    $("#chart1").hide()
+                })
+            })  
+  
+        </script>
+        <script src="charts.js"></script>
+    </head>
+    <body>
+        <script>
+            var result;
+            var myArr;
+        </script>
+        <div class='mc'>
+        <div class='hr'> 
+            <div class='cn'>
+            <div class='bt' id='c1'><span>chart1</span></div>
+            <br/>
+            <div class='bt' id='c2'><span>chart2</span></div>
+            <br/>
+            <div class='bt' id='c3'><span>chart3</span></div></div>
+            <br/>
+            <div class='bt' id='sl'><span onclick="gensales();">sales</span></div></div>
+            <br/>
+            <input type="text" name="txt" id="sh" />
+            <p id="dummy"></p>
+            <br/>
+            <div class='bt' id='shbt'><span onclick="search();"> Search</span></div>
+            <br/>
+            <div class='bt' id='ud'><span><button id="ud" class="button1 bt">Upload</button></span></div>
+        </div>
+        <div class='up'>
+            <div class='cn' id='ur'>
+                <div id="dp"></div>
+            <div id='ui'>
+                <span>Spongebob Squarepants</span> <br/>
+                <span>Male</span> <br/>
+                <span>Seasponge</span> <br/>
+                <span>July 14,1986</span> <br/>
+                <span>Employee</span> <br/>
+                <span>Fry cook/Waiter at the Krusty Krab</span> <br/>
+                <span>+69 123 456 7890</span> <br/>
+                <span>spongebobsqpants@krabby.com</span> <br/>
+                <span>420 Pineapple St., Bikini Bottom</span> <br/>
+            </div>
+            <a href="index.html"> <div class='bt' id="lo"><span>Log out</span></div> </a>
+            </div>
+            </div>
+        <div class='bd'> 
+            <div id="chart1" class="chart"> 
+                <canvas id="lg1" width="900" height="550" class="cts"></canvas>
+            </div>
+            <div id="chart2" class="chart">
+                <canvas id="bg1" width="550" height="500" class="cts"></canvas>
+                <canvas id="bg2" width="375" height="500" class="cts"></canvas>
+            </div>
+            <div id="chart3" class="chart">
+                <canvas id="rd1" width="750" height="750" class="cts"></canvas>
+            </div>
+            <div id="sales" class="chart scrollpane">
+               <table id="sltbl"> 
+                   <tr>
+                       <th> ID </th>
+                       <th> Timestamp </th>
+                       <th> Species </th>
+                       <th> Food </th>
+                   </tr>
+                </table>
+            </div>
+            <div id="searched" class="chart"> </div>
+            <div id="uploads" class="chart">	
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+
+			  <!-- Modal content -->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <span class="close"> X </span>
+				  <h2>Ahoy Maties! Upload your JSON File here.</h2>
+				</div>
+				<div class="modal-body">
+				  <p id="load">  
+						<input type="file" id="getfile">	
+                      <script>
+                          var result; // variable that stores the json file
+                        document.getElementById("getfile").addEventListener("change", function(){
+                            var filetoread= document.getElementById("getfile").files[0];
+                                var fileread=new FileReader();
+                            fileread.onload= function(e){
+                                var content= e.target.result
+                    result=JSON.parse(content);
+					console.log(result);
+
+        kbpermonth=[0,0,0,0,0,0,0,0,0,0,0,0]
+    
+        for(var i=0; i<result.sales.length; i++){ //this just checks the month and if a krabby pattie was bought then it just increments it everytime for each month.
+            if(result.sales[i].datetime.includes("2019-01")){
+                    kbpermonth[0]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-02")){
+                    kbpermonth[1]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-03")){
+                    kbpermonth[2]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-04")){
+                    kbpermonth[3]=i+1;
+            }
+            else if(result.sales[i].datetime.includes("2019-05")){
+                    kbpermonth[4]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-06")){
+                    kbpermonth[5]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-07")){
+                    kbpermonth[6]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-08")){
+                    kbpermonth[7]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-09")){
+                    kbpermonth[8]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-10")){
+                    kbpermonth[9]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-11")){
+                    kbpermonth[10]+=1;
+            }
+            else if(result.sales[i].datetime.includes("2019-12")){
+                    kbpermonth[11]+=1;
+            }
+            
+        }
+                     //console.log(kbpermonth);
+    var linegraph1 = document.getElementById('lg1');
+    var lg1 = new Chart(linegraph1, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: 'Number of burgers sold',
+                data: kbpermonth,
+                backgroundColor:  'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+            }]
+        },
+        options: {
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+            }
+        });
+								
+                                 
+                
+         burgerperhour=[0,0,0,0,0,0,0,0,0,0,0,0,0]
+    
+        for(var i=0; i<result.sales.length; i++){ //this just checks the month and if a krabby pattie was bought then it just increments it everytime for each month.
+            if(result.sales[i].datetime.includes("08:")){
+                    burgerperhour[0]+=1;
+            }
+            else if(result.sales[i].datetime.includes("09:")){
+                    burgerperhour[1]+=1;
+            }
+            else if(result.sales[i].datetime.includes("10:")){
+                burgerperhour[2]+=1;
+            }
+            else if(result.sales[i].datetime.includes("11:")){
+                burgerperhour[3]+=1;
+            }
+            else if(result.sales[i].datetime.includes("12:")){
+                burgerperhour[4]+=1;
+            }
+            else if(result.sales[i].datetime.includes("13:")){
+               burgerperhour[5]+=1;
+            }
+            else if(result.sales[i].datetime.includes("14:")){
+                burgerperhour[6]+=1;
+            }
+            else if(result.sales[i].datetime.includes("15:")){
+               burgerperhour[7]+=1;
+            }
+            else if(result.sales[i].datetime.includes("16:")){
+              burgerperhour[8]+=1;
+            }
+            else if(result.sales[i].datetime.includes("17:")){
+                burgerperhour[9]+=1;
+            }
+            else if(result.sales[i].datetime.includes("18:")){
+                burgerperhour[10]+=1;
+            }
+            else if(result.sales[i].datetime.includes("19:")){
+              burgerperhour[11]+=1;
+            }
+            else if(result.sales[i].datetime.includes("20:")){
+              burgerperhour[12]+=1;
+            }
+            
+        }
+                     console.log(burgerperhour);
+                    //console.log(soldburgers);
+        var bargraph1 = document.getElementById('bg1');
+        var bg1 = new Chart(bargraph1, {
+            type: 'bar',
+            data: {
+                labels: ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
+                datasets: [{
+                    label: 'Number of burgers sold per hour:)',
+                    data: burgerperhour,
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86,1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+    });
+        var burgersales=new Array(3);
+        burgersales[0]= result.burger_sales['Krusty Combo'];
+        burgersales[1]= result.burger_sales['Krusty Deluxe'];
+        burgersales[2]= result.burger_sales['Krabby Pattie'];
+              console.log(burgersales);  
+								
+        var bargraph2 = document.getElementById('bg2');
+        var bg2 = new Chart(bargraph2, {
+            type: 'bar',
+            data: {
+                labels: ['Krusty Combo', 'Krusty Deluxe', 'Krabby Pattie'],
+                datasets: [{
+                    label: 'Burger Sales',
+                    data: burgersales,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86,1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+    });              
+                    
+    var KC= new Array(7);
+    var KP= new Array(7);
+    var KD= new Array(7);
+    var burgersalesbyspecies=[KC,KP, KD];       
+                    KC[0]=result.burger_by_species['Krusty Combo']['leatherback turtle'];
+                    KC[1]=result.burger_by_species['Krusty Combo']['salmon'];
+                    KC[2]=result.burger_by_species['Krusty Combo']['seahorse'];
+                    KC[3]=result.burger_by_species['Krusty Combo']['coral'];
+                    KC[4]=result.burger_by_species['Krusty Combo']['giant clam'];
+                    KC[5]=result.burger_by_species['Krusty Combo']['gray whale'];
+                    KC[6]=result.burger_by_species['Krusty Combo']['sea lion'];
+                    
+                    KP[0]=result.burger_by_species['Krabby Pattie']['leatherback turtle'];
+                    KP[1]=result.burger_by_species['Krabby Pattie']['salmon'];
+                    KP[2]=result.burger_by_species['Krabby Pattie']['seahorse'];
+                    KP[3]=result.burger_by_species['Krabby Pattie']['coral'];
+                    KP[4]=result.burger_by_species['Krabby Pattie']['giant clam'];
+                    KP[5]=result.burger_by_species['Krabby Pattie']['gray whale'];
+                    KP[6]=result.burger_by_species['Krabby Pattie']['sea lion'];
+                    
+                    KD[0]=result.burger_by_species['Krusty Deluxe']['leatherback turtle'];
+                    KD[1]=result.burger_by_species['Krusty Deluxe']['salmon'];
+                    KD[2]=result.burger_by_species['Krusty Deluxe']['seahorse'];
+                    KD[3]=result.burger_by_species['Krusty Deluxe']['coral'];
+                    KD[4]=result.burger_by_species['Krusty Deluxe']['giant clam'];
+                    KD[5]=result.burger_by_species['Krusty Deluxe']['gray whale'];
+                    KD[6]=result.burger_by_species['Krusty Deluxe']['sea lion'];
+                    console.log(burgersalesbyspecies);
+
+    var radar1 = document.getElementById('rd1');
+    var rd1 = new Chart(radar1, {
+    type: 'radar',
+    data: {
+        labels: ['Leatherback Turtle', 'Salmon', 'Seahorse', 'Coral', 'Giant Clam', 'Gray Whale', 'Sea Lion'],
+        datasets: [{
+            label: 'Krusty Combo',
+            backgroundColor: 'rgba(255, 99, 132, 0.3)',
+            borderColor:'rgba(255, 99, 132, 1)',
+            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+            data: KC,
+    }, {
+            label: 'Krabby Pattie',
+            backgroundColor: 'rgba(54, 162, 235, 0.3)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            pointBackgroundColor:'rgba(54, 162, 235, 1)',
+            data: KP,
+    },{
+            label: 'Krusty Deluxe',
+            backgroundColor: 'rgba(255, 206, 86, 0.3)',
+            borderColor:  'rgba(255, 206, 86, 1)',
+            pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+            data: KD,
+    } ]
+        
+    },
+    options: {
+    responsive: false,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Fish to product'
+    },
+    scale: {
+      ticks: {
+        beginAtZero: true
+      }
+    },
+    tooltips:{
+      enabled:false,
+    }
+    }
+});					
+
+                            }
+                            fileread.readAsText(filetoread);
+								alert('File uploaded.');
+							
+                        });
+                        var dum=[];
+                        var p;
+        function search(){
+    
+    
+                            var filetoread= document.getElementById("getfile").files[0];
+                                var fileread=new FileReader();
+                            fileread.onload= function(e){
+                                var content= e.target.result
+                    result=JSON.parse(content);
+                                                                            
+            myArr= new Array(result.sales.length);
+                for(i=0; i<myArr.length; i++)
+                    myArr[i]=result.sales[i];
+                    
+                    console.log(myArr);
+                    var txt = document.getElementById('sh').value;
+
+            for(i=0; i<myArr.length; i++){
+                if(myArr[i].datetime.includes(txt)){
+                    dum.push(myArr[i].datetime+ " Burger bought: "+ myArr[i].burger +" Specie:"+ myArr[i].species);
+                    }
+                }         
+                                
+                for(i=0; i<dum.length; i++)
+                        console.log(dum[i]); //prints the searched day on console 
+                                //dum array has the contents to print for search
+                   }
+                            fileread.readAsText(filetoread);
+                        
+        }
+     
+                             function gensales() {
+                         
+                            var filetoread= document.getElementById("getfile").files[0];
+                                var fileread=new FileReader();
+                            fileread.onload= function(e){
+                                var content= e.target.result
+                    result=JSON.parse(content);
+               for(i=0; i<result.sales.length; i++){
+            var table = document.getElementById("sltbl");
+            var row = table.insertRow(1);
+            var idcell = row.insertCell(0);
+            var timecell = row.insertCell(1);
+            var speciescell = row.insertCell(2);
+            var foodcell = row.insertCell(3);
+            idcell.innerHTML = i+1;
+            timecell.innerHTML = result.sales.datetime;
+            speciescell.innerHTML = result.sales.species;
+            foodcell.innerHTML = result.sales.burger;
+             idcell.innerHTML = i+1;
+                timecell.innerHTML = result.sales[i].datetime;
+                speciescell.innerHTML =result.sales[i].burger;
+                foodcell.innerHTML =result.sales[i].species;
+                }
+            }  
+                       fileread.readAsText(filetoread);        
+                     }
+            
+            $(function()    
+              {
+                $('.scroll-pane')
+                    .jScrollPane()
+                    .bind(
+                    'mousewheel',
+                    function(e)
+            {
+                e.preventDefault();
+            }
+                );
+            });
+
+                      </script>
+				  </p>
+
+				</div>
+				<div class="modal-footer">
+				  <h3>    </h3>
+				</div>
+			  </div>
+
+			</div>
+
+			<script>  
+			// Get the modal
+			var modal = document.getElementById("myModal");
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("ud");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+				modal.style.display = "none";
+			  }
+			}
+  
+			</script>
+            </div>
+			<!-- Modal content end -->
+        </div>
+    </body>
+</html>
