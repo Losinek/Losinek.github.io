@@ -112,6 +112,10 @@
                 border-style: solid;
                 border-width: 10px;
                 border-color: #8a5626;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                flex-grow: 1;
             }
             .up{
                 background-color: e04329;
@@ -132,11 +136,11 @@
                 height: 100%;
             }
             .bt{
-                position: fixed;
+                position: absolute;
 /*                background-color: lightgoldenrodyellow;*/
                 font-size: 30px;
                 flex-grow: 1;
-                top: 3%;
+                top: 30%;
                 background-image: url(board.PNG);
                 background-repeat: no-repeat;
                 width: 100px;
@@ -144,16 +148,19 @@
                 background-size: 140%,140%;
                 background-position:center;
                 background-position:center;
-                font-family: "krabbyPatty"
+                font-family: "krabbyPatty";
+                display: flex;
+                flex-grow: 2;
             }
             .bt:hover{
-                
+                box-shadow: 3px 3px 5px 6px rgba(88, 25, 10, 0.38);
             }
             .ur{
                 flex-direction:column;
             }
             .chart{
-                position: fixed;
+                position: absolute;
+                display:flex;
                 width:68%;
                 height:90%;
                 top: 10%;
@@ -165,7 +172,6 @@
                 flex-grow: 1;
                 background-image: url(wood.PNG);
                 background-repeat: no-repeat;
-                background-size: contain;
                 background-size: 100%, 100%;
                 background-position: center;
                 background-color: #ffed88;
@@ -204,7 +210,7 @@
                 top:3%;
             }
             #ud{
-                left: 63%;
+                left: 73%;
                 top:3%				
             }
 			
@@ -221,19 +227,18 @@
 			}
 			
             #sh{
-                position:fixed;
-                left: 43%;
+                position:absolute;
+                left: 45%;
                 top:3%;
                 width:300px;
                 height:33px;
             }
             #shbt{
-                width:50px;
-                left: 59%;
+                left: 65%;
                 top:3%;
             }
             #dp{
-                position: fixed;
+                position: absolute;
                 width: 250px;
                 height: 250px;
                 border-radius: 250px;
@@ -244,8 +249,8 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: 100%, 100%;
-                left: 78%;
-                top: 7%;
+                right: 95;
+                top: 20;
             }
             #ui{
                 background-image: url(mrKrabs.PNG);
@@ -253,11 +258,11 @@
                 background-repeat:no-repeat;
                 background-position: center;
 /*                background-color: indianred;*/
-                position: fixed;
+                position: absolute;
                 width: 400px;
                 height: 400px;
-                left: 74%;
-                top: 35%;
+                right: 30;
+                top: 300;
                 padding-top: 150px;
                 text-align: center;
                 color: #2d2f33;
@@ -302,6 +307,12 @@
             }
             
              #sltbl{
+                width: 90%;
+                font-size: 25px;
+                background-color: blanchedalmond;
+                
+            }
+               #search{
                 width: 90%;
                 font-size: 25px;
                 background-color: blanchedalmond;
@@ -391,16 +402,16 @@
             <br/>
             <div class='bt' id='c2'><span>chart2</span></div>
             <br/>
-            <div class='bt' id='c3'><span>chart3</span></div></div>
+            <div class='bt' id='c3'><span>chart3</span></div>
             <br/>
             <div class='bt' id='sl'><span onclick="gensales();">sales</span></div></div>
             <br/>
-            <input type="text" name="txt" id="sh" />
+            <input type="text" name="txt" id="sh"/>
             <p id="dummy"></p>
             <br/>
             <div class='bt' id='shbt'><span onclick="search();"> Search</span></div>
             <br/>
-            <div class='bt' id='ud'><span><button id="ud" class="button1 bt">Upload</button></span></div>
+            <div class='bt' id='ud'><span><button id="ud" class="button1 bt">Upload</button></span></div></div>
         </div>
         <div class='up'>
             <div class='cn' id='ur'>
@@ -435,12 +446,18 @@
                    <tr>
                        <th> ID </th>
                        <th> Timestamp </th>
-                       <th> Species </th>
                        <th> Food </th>
+                       <th> Species </th>
                    </tr>
                 </table>
             </div>
-            <div id="searched" class="chart"> </div>
+            <div id="searched" class="chart scrollpane"> 
+                <table id="search">
+                    <th> Timestamp </th>
+                    <th> Food </th>
+                    <th> Species </th>
+                </table>
+            </div>
             <div id="uploads" class="chart">	
 			<!-- The Modal -->
 			<div id="myModal" class="modal">
@@ -769,13 +786,22 @@
 
             for(i=0; i<myArr.length; i++){
                 if(myArr[i].datetime.includes(txt)){
-                    dum.push(myArr[i].datetime+ " Burger bought: "+ myArr[i].burger +" Specie:"+ myArr[i].species);
+                     var table = document.getElementById("search");
+                     var row = table.insertRow(1);
+//                     var idcell = row.insertCell(0);
+                     var timecell = row.insertCell(0);
+                     var speciescell = row.insertCell(1);
+                     var foodcell = row.insertCell(2);
+//                     idcell.innerHTML = i+1;
+                     timecell.innerHTML = myArr[i].datetime;
+                     speciescell.innerHTML = myArr[i].species;
+                     foodcell.innerHTML = myArr[i].burger;
+                     dum.push(myArr[i].datetime+ " Burger bought: "+ myArr[i].burger +" Species:"+ myArr[i].species);
                     }
                 }         
                                 
                 for(i=0; i<dum.length; i++)
                         console.log(dum[i]); //prints the searched day on console 
-                                //dum array has the contents to print for search
                    }
                             fileread.readAsText(filetoread);
                         
