@@ -90,14 +90,14 @@
                 <div class="ct">
                 <div class="fm">
                 <span>Username</span>
-                <input type="text" placeholder="SpongebobSquarepants">
+                <input type="text" placeholder="SpongebobSquarepants" id="id1">
                 <br/>
                 <span>Password</span>
                 <br/>
-                <input type="password" placeholder="GaryistheCUTESTsnail<333">
+                <input type="password" placeholder="GaryistheCUTESTsnail<333" id="pass">
                 </div>
                 <div id="li" class='bt'>
-                <a href="Dashboard.html"><span>Log in</span></a>
+                <span onclick="validate();">Log in</span>
                 </div>
                 <div id="fp" class='bt'>
                 <span>Forgot your password?</span>
@@ -105,5 +105,17 @@
                 </div>
             </div>
         </div>
+        <script>
+        
+            function validate(){
+                if (document.getElementById("id1").value=="admin" && document.getElementById("pass").value=="p@ssword"){
+                     alert("Successful!");
+                    location.href="Dashboard.html";
+                }
+                else
+                    alert("Wrong credentials, try again!");
+                
+            }
+        </script>
     </body>
 </html>
